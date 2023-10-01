@@ -1,18 +1,54 @@
-//
-//  PersonalInfoView.swift
-//  FriendNet
-//
-//  Created by Yvonne Lee on 9/30/23.
-//
-
 import SwiftUI
 
 struct PersonalInfoView: View {
+    var contact: Contact
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 20) {
+            Text(contact.name)
+                .font(.system(size: 28, weight: .medium, design: .rounded))
+            
+            HStack {
+                Image(systemName: "phone.fill")
+                    .foregroundColor(.blue)
+                Text(contact.phoneNumber)
+            }
+            
+            if let email = contact.email {
+                HStack {
+                    Image(systemName: "envelope.fill")
+                        .foregroundColor(.blue)
+                    Text(email)
+                }
+            }
+            
+            if let address = contact.address {
+                HStack {
+                    Image(systemName: "house.fill")
+                        .foregroundColor(.blue)
+                    Text(address)
+                }
+            }
+            
+            if let birthday = contact.birthday {
+                HStack {
+                    Image(systemName: "calendar")
+                        .foregroundColor(.blue)
+                    Text("\(birthday, formatter: DateFormatter.shortDate)")
+                }
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("Personal Info")
     }
 }
 
-#Preview {
-    PersonalInfoView()
+extension DateFormatter {
+    static var shortDate: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }
 }

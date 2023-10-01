@@ -10,7 +10,7 @@ struct HomePageView: View {
     var body: some View {
         NavigationView {
             List(contacts) { contact in
-                NavigationLink(destination: Text(contact.name)) { // Placeholder destination
+                NavigationLink(destination: PersonalInfoView(contact: contact)) {
                     VStack(alignment: .leading) {
                         Text(contact.name)
                             .font(.system(size: 22, weight: .medium, design: .rounded))
